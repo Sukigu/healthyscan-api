@@ -2,7 +2,7 @@
 const express = require('express'),
 	router = express.Router(),
 	Sequelize = require('sequelize'),
-	sequelize = new Sequelize(proces.env.DATABASE_URL, {dialect: 'postgres', dialectOptions: {ssl: true}}),
+	sequelize = new Sequelize(process.env.DATABASE_URL, {dialect: 'postgres', dialectOptions: {ssl: true}}),
 	dbPopulator = require('./populate_db');
 
 const Product = sequelize.define('products', {
