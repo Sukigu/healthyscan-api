@@ -89,11 +89,13 @@ router.get('/api/product/:barcode', function(req, res) {
 			return ProductIngredient.findAll({where: {productId: product.id}})
 			.then((productIngredients) => {
 				for (var i = 0; i < productIngredients.length; ++i) {
-					console.log(productIngredients.length);
 					var ingredientId = productIngredients[i].ingredientId;
 					
 					return Ingredient.findOne({where: {id: ingredientId}})
-					.then((ingredient) => ingredientNames.push(ingredient.name));
+					.then((ingredient) => {
+						console.log(ingredient);
+						ingredientNames.push(ingredient.name)
+					});
 				}
 			});
 		} else {
@@ -102,7 +104,6 @@ router.get('/api/product/:barcode', function(req, res) {
 		}
 	})
 	.then (() => {
-		console.log(ingredientNames);
 		requestedProduct = requestedProduct.toJSON();
 		requestedProduct.ingredients = ingredientNames;
 		
