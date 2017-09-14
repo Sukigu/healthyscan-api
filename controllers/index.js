@@ -88,8 +88,8 @@ router.get('/api/product/:barcode', function(req, res) {
 		if (product !== null) {
 			return ProductIngredient.findAll({where: {productId: product.id}})
 			.then((productIngredients) => {
-				console.log(productIngredients);
 				for (var i = 0; i < productIngredients.length; ++i) {
+					console.log(productIngredients.length);
 					var ingredientId = productIngredients[i].ingredientId;
 					
 					return Ingredient.findOne({where: {id: ingredientId}})
@@ -102,6 +102,7 @@ router.get('/api/product/:barcode', function(req, res) {
 		}
 	})
 	.then (() => {
+		console.log(ingredientNames);
 		requestedProduct = requestedProduct.toJSON();
 		requestedProduct.ingredients = ingredientNames;
 		
