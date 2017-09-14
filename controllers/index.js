@@ -86,23 +86,26 @@ router.get('/api/product/:barcode', function(req, res) {
 		requestedProduct = product;
 
 		if (product !== null) {
-			return ProductIngredient.findAll({where: {productId: product.id}})
+
+		return ProductIngredient.findAll({where: {productId: product.id}})
 			.then((productIngredients) => {
 				for (var i = 0; i < productIngredients.length; ++i) {
 					var ingredientId = productIngredients[i].ingredientId;
 					
 					Ingredient.findOne({where: {id: ingredientId}})
 					.then((ingredient) => {
-						console.log("Poo"+ingredientNames);
-						ingredientNames.push(ingredient.name)
+						ingredientNames.push(ingredient.name);
+						
+						if(i+1 == productIngredients.length)
+						{
+							requestedProduct = requestedProduct.toJSON();
+							requestedProduct.ingredients = ingredientNames;
+		
+							res.json(requestedProduct);
+
+						}
 					});
 				}
-				console.log(ingredientNames);
-		requestedProduct = requestedProduct.toJSON();
-		requestedProduct.ingredients = ingredientNames;
-		
-		res.json(requestedProduct);
-
 			});
 		} else {
 			res.status(404).send('404 Not Found');
