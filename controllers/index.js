@@ -75,7 +75,7 @@ router.get('/api/addproductingredient', function(req,res){
 	});
 
 
-}
+});
 
 router.get('/api/product/:barcode', function(req, res) {
 	var ingredientNames = [];
