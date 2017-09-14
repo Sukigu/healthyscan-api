@@ -91,7 +91,7 @@ router.get('/api/product/:barcode', function(req, res) {
 				for (var i = 0; i < productIngredients.length; ++i) {
 					var ingredientId = productIngredients[i].ingredientId;
 					
-					return Ingredient.findOne({where: {id: ingredientId}})
+					Ingredient.findOne({where: {id: ingredientId}})
 					.then((ingredient) => {
 						console.log(ingredient);
 						ingredientNames.push(ingredient.name)
