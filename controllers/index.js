@@ -88,6 +88,7 @@ router.get('/api/product/:barcode', function(req, res) {
 		if (product !== null) {
 			return ProductIngredient.findAll({where: {productId: product.id}})
 			.then((productIngredients) => {
+				console.log(productIngredients);
 				for (var i = 0; i < productIngredients.length; ++i) {
 					var ingredientId = productIngredients[i].ingredientId;
 					
