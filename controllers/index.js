@@ -62,7 +62,7 @@ router.get('/dbreset', function(req, res) {
 });
 
 router.get('/api/addproductingredient', function(req,res){
-		PendingProduct.create({
+		ProductIngredient.create({
 			productId:req.query.prodid,
 			ingredientId:req.query.ingid
 		}).then((pendingProduct) => {
