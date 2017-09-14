@@ -93,23 +93,28 @@ router.get('/api/product/:barcode', function(req, res) {
 					
 					Ingredient.findOne({where: {id: ingredientId}})
 					.then((ingredient) => {
-						console.log(ingredient);
 						ingredientNames.push(ingredient.name)
 					});
 				}
+		requestedProduct = requestedProduct.toJSON();
+		requestedProduct.ingredients = ingredientNames;
+		
+		res.json(requestedProduct);
+
 			});
 		} else {
 			res.status(404).send('404 Not Found');
 			return Promise.reject();
 		}
-	})
-	.then (() => {
+	});
+	/*.then (() => {
 		console.log(ingredientNames);
 		requestedProduct = requestedProduct.toJSON();
 		requestedProduct.ingredients = ingredientNames;
 		
 		res.json(requestedProduct);
 	});
+	*/
 });
 
 router.get('/api/addpendingproduct', function(req, res) {
