@@ -93,9 +93,11 @@ router.get('/api/product/:barcode', function(req, res) {
 					
 					Ingredient.findOne({where: {id: ingredientId}})
 					.then((ingredient) => {
+						console.log("Poo"+ingredientNames);
 						ingredientNames.push(ingredient.name)
 					});
 				}
+				console.log(ingredientNames);
 		requestedProduct = requestedProduct.toJSON();
 		requestedProduct.ingredients = ingredientNames;
 		
