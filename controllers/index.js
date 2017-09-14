@@ -104,6 +104,7 @@ router.get('/api/product/:barcode', function(req, res) {
 		}
 	})
 	.then (() => {
+		console.log(ingredientNames);
 		requestedProduct = requestedProduct.toJSON();
 		requestedProduct.ingredients = ingredientNames;
 		
