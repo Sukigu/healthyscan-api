@@ -61,6 +61,22 @@ router.get('/dbreset', function(req, res) {
 	.catch((err) => console.log(err));
 });
 
+router.get('/api/addproductingredient', function(req,res)){
+		PendingProduct.create({
+			productId:req.query.prodid,
+			ingredientId:req.query.ingid
+		}).then((pendingProduct) => {
+		if (pendingProduct !== null) {
+			res.json(pendingProduct);
+		}
+		else {
+			res.status(400).send('400 Bad Request');
+		}
+	});
+
+
+}
+
 router.get('/api/product/:barcode', function(req, res) {
 	var ingredientNames = [];
 	var requestedProduct;
