@@ -61,7 +61,7 @@ router.get('/dbreset', function(req, res) {
 	.catch((err) => console.log(err));
 });
 
-router.get('/api/addproductingredient', function(req,res)){
+router.get('/api/addproductingredient', function(req,res){
 		PendingProduct.create({
 			productId:req.query.prodid,
 			ingredientId:req.query.ingid
